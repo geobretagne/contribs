@@ -1,0 +1,22 @@
+<services>
+<!--<service>
+<label>osm test</label>
+<url>http://test.geobretagne.fr/gwc01/service/tms/1.0.0</url>
+<rest>http://test.geobretagne.fr/gwc01/rest/seed/</rest>
+</service>
+<service>
+<label>tile test</label>
+<url>http://test.geobretagne.fr/gwc02/service/tms/1.0.0</url>
+<rest>http://test.geobretagne.fr/gwc02/rest/seed/</rest>
+</service>-->
+<service>
+<label>osm prod</label>
+<url>http://geobretagne.fr/gwc01/service/tms/1.0.0</url>
+<rest>http://geobretagne.fr/gwc01/rest/seed/</rest>
+</service>
+<service>
+<label>tile prod</label>
+<url>http://geobretagne.fr/gwc02/service/tms/1.0.0</url>
+<rest>http://geobretagne.fr/gwc02/rest/seed/</rest>
+</service>
+</services>

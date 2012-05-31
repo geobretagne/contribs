@@ -1,0 +1,86 @@
+div.olControlPanPanel div {
+    background-image:url(http://extjs.cachefly.net/ext-2.2.1/resources/images/gray/panel/tool-sprites.gif);
+    height:15px;
+    width:15px;
+    /* workaround for button height in IE */
+    font-size:0px;
+}
+
+div.olControlPanPanel .olControlPanNorthItemInactive {
+    background-position:15px -60px;
+    left:16px
+}
+div.olControlPanPanel .olControlPanEastItemInactive {
+    background-position:15px -120px;
+    left: 33px;
+    top: 16px;
+}
+div.olControlPanPanel .olControlPanSouthItemInactive {
+    background-position:15px -75px;
+    left: 16px;
+    top: 34px;
+}
+div.olControlPanPanel .olControlPanWestItemInactive {
+    background-position:15px -105px;
+    left: 0px;
+    top: 16px;
+}
+
+div.olControlZoomPanel { 
+    left:21px;
+}
+
+div.olControlZoomPanel div {
+    background-image:url(http://extjs.cachefly.net/ext-2.2.1/resources/images/gray/panel/tool-sprites.gif);
+    height:15px;
+    width:15px;
+    /* workaround for button height in IE */
+    font-size:0px;
+}
+
+div.olControlZoomPanel .olControlZoomInItemInactive {
+    background-position:15px -240px;
+}
+
+div.olControlZoomPanel .olControlZoomToMaxExtentItemInactive {
+    background-image:url(../img/world.png);
+    background-position:0px 0px;
+    height:16px;
+    width:16px;
+    top:-45px;
+}
+
+div.olControlZoomPanel .olControlZoomOutItemInactive {
+    background-position:15px -255px;
+    top: 123px;
+}
+
+div.map-overlay {
+    z-index: 1000; 
+    position: absolute; 
+    right: 10px; 
+    bottom: 10px;
+}
+
+div.map-overlay div.overlay-element {
+    display:inline;
+    float: left;
+    margin: 5px;
+}
+
+.overlay-scaleline {
+    bottom: 0px;
+    left: 0px;
+    margin-top: 0px;
+}
+
+.olControlMousePosition {
+    position: absolute;
+    right: 10px;
+    bottom: 0px;
+    height: 15px;
+    font-size: 8pt;
+    background-color: white
+}
+
+

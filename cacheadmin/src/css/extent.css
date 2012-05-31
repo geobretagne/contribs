@@ -1,0 +1,39 @@
+.zoomin {
+    background-image:url(../img/icon_zoomin.png) !important;
+    height:20px !important;
+    width:20px !important;
+}
+.pan {
+    background-image:url(../img/icon_pan.png) !important;
+    height:20px !important;
+    width:20px !important;
+}
+.back {
+    background-image:url(../img/resultset_previous.png) !important;
+    height:20px !important;
+    width:20px !important;
+}
+.next {
+    background-image:url(../img/resultset_next.png) !important;
+    height:20px !important;
+    width:20px !important;
+}
+.add1 {
+    background-image:url(../img/accept.gif) !important;
+    height:20px !important;
+    width:20px !important;
+}
+.add {
+            background-image:url(../img/add.gif) !important;
+        }        
+.remove {
+            background-image:url(../img/delete.gif) !important;
+        }
+.refresh {
+            background-image:url(../img/refresh.gif) !important;
+        }
+.red_square{
+    background-image:url(../img/red_square.png) !important;
+    height:20px !important;
+    width:20px !important;
+}
