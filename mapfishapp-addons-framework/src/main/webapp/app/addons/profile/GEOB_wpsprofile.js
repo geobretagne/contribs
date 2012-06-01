@@ -66,7 +66,9 @@ Ext.namespace("GEOB");
 		 * Property: markersLayer
 		 * {OpenLayers.Layer.Markers}.
 		 */
-		var markersLayer = null;
+		var markersLayer = null;		
+		
+		var resultLayer = null;
 
 		var tr = function(str){
 			return OpenLayers.i18n(str);
@@ -184,7 +186,7 @@ Ext.namespace("GEOB");
 		 */ 
 		var showLayers = function(){
 			if (map.getLayersByName("Profil").length == 0){
-				map.addLayers([drawLayer,markersLayer]);
+				map.addLayers([drawLayer,resultLayer,markersLayer]);
 				}
 		};
 		/**
@@ -234,6 +236,21 @@ Ext.namespace("GEOB");
 			getprofile(feature,'new',config);
 		};
 		/**
+		 * Method: addmarksfeatures
+		 * matérialise le sens de numérisation de la polyligne		 *
+		 * Parameters:
+		 * graphicHandler - integer Identifiant de la fenêtre Graphique
+		 */ 
+		var addmarksfeatures = function(infos,jobid) {
+			var beginPoint = new OpenLayers.Feature.Vector(new OpenLayers.Geometry.Point(infos.infos.firstpointX,infos.infos.firstpointY));
+			beginPoint.attributes = {profile: parseInt(jobid)};
+			beginPoint.style = {pointRadius: 7, externalGraphic: "app/addons/profile/icon-one.gif"};
+			var endPoint = new OpenLayers.Feature.Vector(new OpenLayers.Geometry.Point(infos.infos.lastpointX,infos.infos.lastpointY));	
+			endPoint.attributes = {profile: parseInt(jobid)};
+			endPoint.style = {pointRadius: 7, externalGraphic: "app/addons/profile/icon-two.jpg"};
+			resultLayer.addFeatures([beginPoint,endPoint]);
+		};
+		/**
 		 * Method: removedrawfeatures
 		 * Supprime le tracé profil correspondant au Graphique	
 		 *
@@ -241,9 +258,16 @@ Ext.namespace("GEOB");
 		 * graphicHandler - integer Identifiant de la fenêtre Graphique
 		 */ 
 		var removedrawfeatures=function(graphicHandler) {
-			var feature = drawLayer.getFeaturesByAttribute('profile',parseInt(graphicHandler));
+			var feature = drawLayer.getFeaturesByAttribute('profile',parseInt(graphicHandler));			
 			drawLayer.removeFeatures(feature);
+			removemarksfeatures(graphicHandler);
 			//verticesLayer.removeAllFeatures();
+		};
+		
+		var removemarksfeatures=function(graphicHandler) {			
+			var features = resultLayer.getFeaturesByAttribute('profile',parseInt(graphicHandler));			
+			resultLayer.removeFeatures(features);
+			
 		};
 		/**
 		 * Method: convertToGML
@@ -360,12 +384,14 @@ Ext.namespace("GEOB");
          * Parameters:
          * process - {WPS.Process}.
          */	
-											
+		//removemarksfeatures									
 		var onUpdated = function(process) {
 			var inputfeature = new OpenLayers.Format.GML().read(process.getInput("data").value)[0];
 			var jobid = inputfeature.attributes['profile'];
+			removemarksfeatures(jobid);
 			var obj = eval("(" + process.getOutput('result').value + ")");
 			var infos = eval("(" + process.getOutput('resultinfos').value + ")");
+			addmarksfeatures(infos,jobid);
 			if (obj.profile.points.length > 0)
 				{								
 					var store = new Ext.data.JsonStore({ 					
@@ -384,6 +410,7 @@ Ext.namespace("GEOB");
 					infosForm.findField('distance').setValue(Math.round(infos.infos.distance) + ' m');
 					infosForm.findField('denivelepositif').setValue(Math.round(infos.infos.denivelepositif) + ' m');
 					infosForm.findField('denivelenegatif').setValue(Math.round(infos.infos.denivelenegatif) + ' m');
+					infosForm.findField('processedpoints').setValue(infos.infos["processed points"]);					
 					lineChart.store = store;
 					lineChart.xAxis.title = 'Distance (m)' + 	' sources : (' + infos.infos.referentiel + ')';	
 					for (var i=0; i<mask_loaders.length; i++){
@@ -408,7 +435,7 @@ Ext.namespace("GEOB");
 		var onError = function(process) {			
 			GEOR.util.errorDialog({
 				title: tr("addonprofile.error"),
-                msg: process.exception.code
+                msg: process.exception.text
 			});
 			var inputfeature = new OpenLayers.Format.GML().read(process.getInput("data").value)[0];
 			var id = inputfeature.attributes['profile'];
@@ -580,7 +607,7 @@ Ext.namespace("GEOB");
 		var onErrorUpdated = function(process) {			
 			GEOR.util.errorDialog({
 				title: tr("addonprofile.error"),
-                msg: process.exception.code
+                msg: process.exception.text
 			});
 			var inputfeature = new OpenLayers.Format.GML().read(process.getInput("data").value)[0];
 			var jobid = inputfeature.attributes['profile'];
@@ -604,6 +631,14 @@ Ext.namespace("GEOB");
 			var profileColor = parseInt('0x' + inputfeature.attributes['color']);
 			var obj = eval("(" + process.getOutput('result').value + ")");
 			var infos = eval("(" + process.getOutput('resultinfos').value + ")");
+			/*var beginPoint = new OpenLayers.Feature.Vector(new OpenLayers.Geometry.Point(infos.infos.firstpointX,infos.infos.firstpointY));
+			beginPoint.attributes = {profile: parseInt(jobid)};
+			beginPoint.style = {pointRadius: 7, externalGraphic: "app/addons/profile/icon-one.gif"};
+			var endPoint = new OpenLayers.Feature.Vector(new OpenLayers.Geometry.Point(infos.infos.lastpointX,infos.infos.lastpointY));	
+			endPoint.attributes = {profile: parseInt(jobid)};
+			endPoint.style = {pointRadius: 7, externalGraphic: "app/addons/profile/icon-two.jpg"};
+			resultLayer.addFeatures([beginPoint,endPoint]);*/
+			addmarksfeatures(infos,jobid);
 			var longueur = infos.infos.distance;
 			if (obj.profile.points.length > 0)
 				{	
@@ -715,7 +750,12 @@ Ext.namespace("GEOB");
 								fieldLabel:tr("addonprofile.negativecumul"),
 								name:'denivelenegatif',
 								value:Math.round(infos.infos.denivelenegatif) + ' m'			            
-							} 					
+							},
+							{  
+								fieldLabel:tr("addonprofile.processedpoints"),
+								name: 'processedpoints',
+								value:infos.infos["processed points"]			            
+							}
 						],
 						buttons: [{			
 							iconCls: 'wps-csv',
@@ -783,7 +823,8 @@ Ext.namespace("GEOB");
          */
         create:function(m,wpsconfig){
 			map = m;		
-			markersLayer = new OpenLayers.Layer.Markers( "WpsMarker",{displayInLayerSwitcher: false});			
+			markersLayer = new OpenLayers.Layer.Markers( "WpsMarker",{displayInLayerSwitcher: false});
+			resultLayer = new OpenLayers.Layer.Vector("Result",{displayInLayerSwitcher: false});
 			drawLayer = new OpenLayers.Layer.Vector("Profil",{displayInLayerSwitcher: false});
 			drawLayer.events.register("featureadded",'', onNewLine);			
 			colors =wpsconfig.options.colors;

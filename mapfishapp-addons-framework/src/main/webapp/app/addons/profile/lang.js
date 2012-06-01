@@ -30,7 +30,8 @@
 	  "addonprofile.loadgml": "Charger un fichier gml.",
 	  "addonprofile.loadgmltip": "Charger un fichier gml.",
 	  "addonprofile.parameters": "Paramètres",
-	  "addonprofile.parameterstip": "Paramètres"    
+	  "addonprofile.parameterstip": "Paramètres",
+	"addonprofile.processedpoints": "nb points"
 	 });
 OpenLayers.Util.applyDefaults(OpenLayers.Lang["en"], {    
       "addonprofile.error": "Profile tool error",
@@ -64,7 +65,8 @@ OpenLayers.Util.applyDefaults(OpenLayers.Lang["en"], {
 	  "addonprofile.loadgml": "Load gml file.",
 	  "addonprofile.loadgmltip": "Load gml file.",
 	  "addonprofile.parameters": "Parameters",
-	  "addonprofile.parameterstip": "Parameters"        
+	  "addonprofile.parameterstip": "Parameters",  
+"addonprofile.processedpoints": "nb points"      
 	 });
 
 
