@@ -12,22 +12,28 @@ Ext.namespace("GEOR");
 		 * Property: map
 		 * {OpenLayers.Map} The map instance.
 		 */
-		var map = null;	
+		var map = null;
+		
+		/**
+		 * Property:addonsListItems
+		 * Array of {addons}, from custom.js.
+		 */
 		
 		var addonsListItems = null;
 		
-		var initialized = false;
 		/**
-		 * Property: config
-		 *{Object} Hash of options, with keys: pas, referentiel.
+		 * Property: initializes
+		 * boolean.
 		 */
 		
-		var config = null;		
+		var initialized = false;		
 		
 		/**
-		 * Property: colors
-		 *[Array] Hash of colors.
+		 *Method : lazyLoad
+		 * this method loads dynamically all js and css files present in
+		 * addonsListItems.js and addonsListItems.css using Ext.Loader.
 		 */
+		 
 		var lazyLoad = function(){
 			if (initialized == false){			
 				var libs = [];	
@@ -55,6 +61,14 @@ Ext.namespace("GEOR");
 			}
 		};
 		
+		/**
+		 *Method : loadcssfile
+		 * this method loads dynamically the css file passed in parameter
+		 * this method is used because Ext.Loader does not works with css files
+		 * Parameter:
+         	 * filename - css file.
+		 */
+		 
 		var loadcssfile = function(filename){
 				
 		  var fileref=document.createElement("link");
@@ -64,6 +78,12 @@ Ext.namespace("GEOR");
 		  document.getElementsByTagName("head")[0].appendChild(fileref);
 		};
 		
+		/**
+		 *Method : checkRoles
+		 * this method checks the addon permissions
+		 * Parameter: okRoles {addonItems.roles}.
+         	 * 
+		 */
 		var checkRoles = function(okRoles) {
 	        // module is available for everyone if okRoles is empty:
 	        var ok = (okRoles.length == 0);
@@ -87,7 +107,7 @@ Ext.namespace("GEOR");
 		 /**
          * APIMethod: create
          * 
-		 * Retourne true si une sélection est effectuée dans le Panel Results
+	 * This API method returns items menu from each addon loaded
          * Parameters:
          * m - {OpenLayers.Map} The map instance.
          */		
