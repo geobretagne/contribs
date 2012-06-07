@@ -117,10 +117,10 @@ GEOR.toolbar = (function() {
                 popup.position();
                 popup.show();
                 popup.update({
-                    measure: event.order == 2 ? 
-                        (event.units == 'm' ? 
-                            (event.measure/10000).toFixed(2) : 
-                            (event.measure*100).toFixed(2)) : 
+                    measure: event.order == 2 ?
+                        (event.units == 'm' ?
+                            (event.measure/10000).toFixed(2) :
+                            (event.measure*100).toFixed(2)) :
                         event.measure.toFixed(2),
                     units: event.order == 2 ? 'hectares' : event.units
                 });
@@ -133,7 +133,7 @@ GEOR.toolbar = (function() {
         });
         return measureControl;
     };
-    
+
     /**
      * Method: createTbar
      * Create the toolbar.
@@ -179,9 +179,9 @@ GEOR.toolbar = (function() {
             toggleGroup: "map",
             allowDepress: false
         }));
-    
+
         items.push("-");
-        
+
         items.push(new GeoExt.Action({
             control: createMeasureControl(OpenLayers.Handler.Path, map),
             map: map,
@@ -199,7 +199,7 @@ GEOR.toolbar = (function() {
             iconCls: "measure_area",
             allowDepress: false
         }));
-		
+
         items.push("-");
 
         ctrl = new OpenLayers.Control.NavigationHistory();
@@ -232,7 +232,7 @@ GEOR.toolbar = (function() {
             },
             autoScroll: true
         });
-        
+
         if (GEOR.print) {
             items.push("-");
             GEOR.print.setLegend(legendPanel);
@@ -252,7 +252,7 @@ GEOR.toolbar = (function() {
             items.push(Ext.DomHelper.append(Ext.getBody(), login_html));
             items.push('-');
         }
-    
+
         items.push({
             text: "Aide",
             tooltip: "Afficher l'aide",
@@ -304,19 +304,18 @@ GEOR.toolbar = (function() {
                 }
             }
         });
-        
+
         items.push("-");
-		
-		 //ADDONS MENU Section ---------------------------------------
-		if (GEOR.addonsmenu){
-			var addonsMenu = GEOR.addonsmenu.create(map);
-			if (addonsMenu!=null){
-				items.push(addonsMenu);
-				items.push("-");
-			}
-		}
-		//-----------------------------------------------------
-        
+
+        // TODO : ADDONS MENU
+        if (GEOR.addonsmenu){
+            var addonsMenu = GEOR.addonsmenu.create(map);
+            if (addonsMenu!=null){
+                items.push(addonsMenu);
+                items.push("-");
+            }
+        }
+
         items.push(GEOR.workspace.create(map));
 
         // the toolbar items are added afterwards the creation of the toolbar
@@ -347,7 +346,7 @@ GEOR.toolbar = (function() {
             Ext.QuickTips.init();
             return createTbar(layerStore);
         },
-        
+
         /**
          * Method: confirmLogin
          * Displays a confirm dialog before leaving the app for CAS login

@@ -2,7 +2,7 @@
  * Sample geOrchestra viewer config file
  *
  * Instructions: copy this buffer into GEOR_custom.js,
- * uncomment lines you wish to modify and 
+ * uncomment lines you wish to modify and
  * modify the corresponding values to suit your needs.
  */
 
@@ -15,59 +15,64 @@ GEOR.custom = {
      * Defaults to "default.wmc"
      */
     //DEFAULT_WMC: "http://geobretagne.fr/context/default-geobretagne.wmc",
-    
+
     /**
      * Constant: DEFAULT_PRINT_FORMAT
      * {String} The default (ie selected) print layout format.
      * Defaults to "A4 paysage"
      */
     DEFAULT_PRINT_FORMAT: "A4 paysage",
-    
+
     /**
      * Constant: DEFAULT_PRINT_FORMAT
      * {String} The default (ie selected) print resolution.
      * Defaults to "127"
      */
     DEFAULT_PRINT_RESOLUTION: "127",
-	
-	/**
-     * Catalog: ADDONS_LIST     
-	 * Used by GEOR_addonsmenu.js
+
+    /**
+     * Catalog: ADDONS_LIST
+     * Used by GEOR_addonsmenu.js
      */
-     ADDONS_LIST : [
-		{	title: "profil en long",			
-			module : "GEOB.wpsprofile",
-			css	: "app/addons/profile/profile.css",		
-			roles: [],
-			files : ["lib/externals/openlayers/lib/OpenLayers/Format/OWSCommon/v1_1_0.js",
-				"app/addons/profile/ParseXmlIE.js",
-				"lib/externals/openlayers/lib/OpenLayers/Icon.js",				
-				"lib/externals/openlayers/lib/OpenLayers/Marker.js",
-				"lib/externals/openlayers/lib/OpenLayers/Layer/Markers.js",
-				"lib/pywps/WPS.js",
-				"lib/externals/ext/examples/ux/fileuploadfield/fileuploadfield.js",
-				"app/addons/profile/lang.js",
-				"app/addons/profile/GEOB_wpsprofile.js"],
-			options:{wpsurl:"http://geobretagne.fr/wps/mnt",
-					identifier: "getProfileProcess3",
-					colors:['FF0000','556B2F','6495ED']}
-		},
-		{	title: "Agrocampus",			
-			files : ["app/addons/agrocampus/GEOB_wpsagrocampus.js"],
-			roles: ["ROLE_SV_USER"],
-			css	: "app/addons/agrocampus/agrocampus.css",
-			module : "GEOB.wpsagrocampus",
-			options:{wpsurl:"http://geowww.agrocampus-ouest.fr/cgi-bin/mntsurf.cgi",
-					identifier: "infomnt"}
-		},
-		{	title: "menu démo",			
-			files : ["app/addons/model/lang.js","app/addons/model/GEOB_addonmodel.js"],
-			roles: ["ROLE_ANONYMOUS"],
-			css	: "app/addons/model/model.css",
-			module : "GEOB.addonmodel",
-			options:{option1 : "modele", option2: 3}
-		}],
-		
+    ADDONS_LIST : [{
+            title: "profil en long",
+            module: "GEOB.wpsprofile",
+            css: "app/addons/profile/profile.css",
+            roles: [],
+            files: ["lib/externals/openlayers/lib/OpenLayers/Format/OWSCommon/v1_1_0.js",
+                "app/addons/profile/parseXmlIe.js",
+                "lib/externals/openlayers/lib/OpenLayers/Icon.js",
+                "lib/externals/openlayers/lib/OpenLayers/Marker.js",
+                "lib/externals/openlayers/lib/OpenLayers/Layer/Markers.js",
+                "lib/pywps/WPS.js",
+                "lib/externals/ext/examples/ux/fileuploadfield/FileUploadField.js",
+                "app/addons/profile/lang.js",
+                "app/addons/profile/GEOB_wpsprofile.js"],
+            options: {
+                wpsurl:"http://geobretagne.fr/wps/mnt",
+                identifier: "getProfileProcess3",
+                colors:['FF0000','556B2F','6495ED']
+            }
+        },
+        {    title: "Agrocampus",
+            files : ["app/addons/agrocampus/GEOB_wpsagrocampus.js"],
+            roles: [],
+            css    : "app/addons/agrocampus/agrocampus.css",
+            module : "GEOB.wpsagrocampus",
+            options:{wpsurl:"http://geowww.agrocampus-ouest.fr/cgi-bin/mntsurf.cgi",
+                    identifier: "infomnt"}
+        },
+        {    title: "menu démo",
+            files: ["app/addons/model/lang.js","app/addons/model/GEOB_addonmodel.js"],
+            roles: ["ROLE_ANONYMOUS"],
+            css: "app/addons/model/model.css",
+            module: "GEOB.addonmodel",
+            options: {
+                option1: "modele",
+                option2: 3
+            }
+        }],
+
     /**
      * Constant: GEOSERVER_WFS_URL
      * The URL to GeoServer WFS.
@@ -79,7 +84,7 @@ GEOR.custom = {
 
     /**
      * Constant: GEOSERVER_WMS_URL
-     * The URL to the GeoServer WMS. 
+     * The URL to the GeoServer WMS.
      * This is required if and only if OSM_AS_OVMAP is set to false.
      * Defaults to /geoserver/wms
      */
@@ -94,32 +99,32 @@ GEOR.custom = {
 
     /**
      * Constant: CSW_GETDOMAIN_SORTING
-     * true to case insensitive sort (client side) the keywords 
-     * got from a CSW getDomain request. false to disable 
-     * client side sorting 
+     * true to case insensitive sort (client side) the keywords
+     * got from a CSW getDomain request. false to disable
+     * client side sorting
      * (which is preferable in case of too many keywords).
      * Defaults to false
      */
     CSW_GETDOMAIN_SORTING: false,
-    
+
     /**
      * Constant: CATALOG_NAME
      * The name to display in the catalog tab under "add layer"
      * (was: GeoCatalogue for the GeoBretagne project).
      * Defaults to 'Catalogue geOrchestra'
      */
-    CATALOG_NAME: 'Catalogue GÃ©oBretagne',
-    
+    CATALOG_NAME: 'Catalogue G"oBretagne',
+
     /**
      * Constant: THESAURUS_NAME
      * Thesaurus name to display for the CSW GetDomain request.
-     * Defaults to 'mots clÃ©s'
+     * Defaults to 'mots cl"s'
      */
     THESAURUS_NAME: 'mots clefs',
-    
+
     /**
      * Constant: DEFAULT_THESAURUS_KEY
-     * Key (as the one in the response from /geonetwork/srv/fr/xml.thesaurus.getList) 
+     * Key (as the one in the response from /geonetwork/srv/fr/xml.thesaurus.getList)
      * of the thesaurus to use as the default (selected) one.
      */
     DEFAULT_THESAURUS_KEY: 'local.theme.geobretagne',
@@ -129,14 +134,14 @@ GEOR.custom = {
      * List of catalogs for freetext search
      */
     CATALOGS: [
-        ['http://geobretagne.fr/geonetwork/srv/fr/csw', 'GÃ©oBretagne'],
+        ['http://geobretagne.fr/geonetwork/srv/fr/csw', 'GéoBretagne'],
         ['http://georchestra.bretagne-environnement.org/geonetwork/srv/fr/csw', 'GIP Bretagne Environnement'],
         ['http://geowww.agrocampus-ouest.fr/geonetwork/srv/fr/csw','Agrocampus Ouest'],
         ['http://www.geopal.org/geonetwork/srv/fr/csw', 'GeoPAL'],
-        ['http://adelie.application.developpement-durable.gouv.fr/minicsw.do','MEEDDM/AdÃ©lie'],
-        ['http://www.geocatalogue.fr/api-public/servicesRest', 'GÃ©oCatalogue france']
-    ], 
-    
+        ['http://adelie.application.developpement-durable.gouv.fr/minicsw.do','MEEDDM/Adélie'],
+        ['http://www.geocatalogue.fr/api-public/servicesRest', 'GéoCatalogue france']
+    ],
+
     /**
      * Constant: DEFAULT_CSW_URL
      * CSW URL which should be used by default for freetext search
@@ -147,38 +152,38 @@ GEOR.custom = {
     /**
      * Constant: MAX_CSW_RECORDS
      * The maximum number of CSW records queried for catalog search
-     * Note: if you set this to a low value, you run the risk of not having 
-     * enough results (even 0). On the contrary, setting a very high value 
+     * Note: if you set this to a low value, you run the risk of not having
+     * enough results (even 0). On the contrary, setting a very high value
      * might result in browser hanging (too much XML data to parse).
      * Defaults to 20.
      */
     MAX_CSW_RECORDS: 20,
-        
+
     /**
      * Constant: NO_THUMBNAIL_IMAGE_URL
      * URL to a thumbnail image shown when none is provided by the CSW service
      * Defaults to the provided one ('app/img/nopreview.gif')
      */
     NO_THUMBNAIL_IMAGE_URL: 'app/img/nopreview.gif',
-            
 
-        
+
+
     /**
      * Constant: MAX_FEATURES
      * The maximum number of vector features displayed.
      * Defaults to a value estimated by an empirical formula
      */
     MAX_FEATURES: 2000,
-    
+
     /**
      * Constant: MAX_LENGTH
-     * The maximum number of chars in a XML response 
+     * The maximum number of chars in a XML response
      * before triggering an alert.
      * Defaults to a value estimated by an empirical formula
      */
     //MAX_LENGTH: 500000,
 
-    
+
     /**
      * Constant: DEFAULT_ATTRIBUTION
      * Default attribution for layers which don't have one.
@@ -188,12 +193,12 @@ GEOR.custom = {
 
     /**
      * Constant: OSM_AS_OVMAP
-     * Boolean: if true, use OSM mapnik as overview map baselayer 
+     * Boolean: if true, use OSM mapnik as overview map baselayer
      * instead of GEOR.config.OVMAP_LAYER_NAME.
      * Defaults to true
      */
     OSM_AS_OVMAP: true,
-    
+
     /**
      * Constant: OVMAP_LAYER_NAME
      * The name of the base layer which will be displayed in the overview map.
@@ -202,7 +207,7 @@ GEOR.custom = {
      * Defaults to "geor_loc:DEPARTEMENTS"
      */
     //OVMAP_LAYER_NAME: "geob_loc:DEPARTEMENTS",
-    
+
     /**
      * Constant: WMSC2WMS
      * Hash allowing correspondance between WMS-C server URLs and WMS server URLs for print
@@ -214,7 +219,7 @@ GEOR.custom = {
      * "wmsc_url": "wms_url",
      *
      * For a WMSC with no WMS counterpart,
-     * referencing the wmsc_url here allows the user 
+     * referencing the wmsc_url here allows the user
      * to be warned that this layer will not be printed:
      *
      * "wmsc_url": undefined,
@@ -230,14 +235,14 @@ GEOR.custom = {
      * Defaults to GeoServer defaults, which is 25.4 / 0.28
      */
     //MAP_DOTS_PER_INCH: 25.4 / 0.28,
-    
+
     /**
      * Constant: RECENTER_ON_ADDRESSES
      * {Boolean} whether to display the recenter on addresses tab.
      * Defaults to false
      */
     RECENTER_ON_ADDRESSES: true,
-    
+
     /**
      * Constant: ADDRESS_URL
      * {String} The URL to the OpenAddresses web service.
@@ -252,7 +257,7 @@ GEOR.custom = {
      * Defaults to "geor_loc"
      */
     NS_LOC: "geob_loc",
-    
+
     /**
      * Constant: NS_EDIT
      * {String} The editing layers' namespace alias as defined in
@@ -334,21 +339,21 @@ GEOR.custom = {
      * Defaults to 7230727 (France metropolitaine top)
      */
     MAP_YMAX: 7230727,
-    
+
     /**
      * Constant: MAP_POS_SRS1
      * {String} The cursor position will be displayed using this SRS.
      * Defaults to "EPSG:2154"
      */
     MAP_POS_SRS1: "EPSG:2154",
-    
+
     /**
      * Constant: MAP_POS_SRS2
      * {String} The cursor position will be displayed using this SRS.
      * Defaults to ""
      */
     MAP_POS_SRS2: "EPSG:4326",
-    
+
     /**
      * Constant: PROJ4JS_STRINGS
      * {Object} The list of supported SRS with their definitions.
@@ -364,21 +369,21 @@ GEOR.custom = {
         'EPSG:3948':"+title=RGF93/CC48, +proj=lcc +lat_1=47.25 +lat_2=48.75 +lat_0=48 +lon_0=3 +x_0=1700000 +y_0=7200000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs",
         "EPSG:900913": "+title=Web Spherical Mercator, +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs"
     },
-    
+
     /**
      * Constant: TILE_SINGLE
      * {Boolean} When false, activates WMS tiled requests.
      * Defaults to false
      */
     //TILE_SINGLE: false,
-    
+
     /**
      * Constant: TILE_WIDTH
      * {Integer} Width of the WMS tiles in pixels.
      * Defaults to 512
      */
     TILE_WIDTH: 512,
-    
+
     /**
      * Constant: TILE_HEIGHT
      * {Integer} Height of the WMS tiles in pixels.
@@ -408,14 +413,14 @@ GEOR.custom = {
      * Defaults to 5
      */
     GEONAMES_ZOOMLEVEL: 3,
-    
+
     /**
      * Constant: ANIMATE_WINDOWS
      * {Boolean} Display animations on windows opening/closing
      * Defaults to true
      */
     ANIMATE_WINDOWS: false,
-    
+
     /**
      * Constant: ROLES_FOR_STYLER
      * {Array} roles required for the styler to show up
@@ -424,7 +429,7 @@ GEOR.custom = {
      * Defaults to ['ROLE_SV_USER']
      */
     ROLES_FOR_STYLER: [],
-    
+
     /**
      * Constant: ROLES_FOR_QUERIER
      * {Array} roles required for the querier to show up
@@ -433,7 +438,7 @@ GEOR.custom = {
      * Defaults to []
      */
     ROLES_FOR_QUERIER: [],
-    
+
     /**
      * Constant: ROLES_FOR_PRINTER
      * {Array} roles required to be able to print
@@ -442,87 +447,87 @@ GEOR.custom = {
      * Defaults to ['ROLE_SV_USER']
      */
     ROLES_FOR_PRINTER: [],
-    
+
     /**
      * Constant: HELP_URL
      * {String} URL of the help ressource.
      * Defaults to "/doc/html/documentation.html#viewer"
      */
     HELP_URL: "http://www.geobretagne.fr/web/guest/assistance#viewer",
-   
+
     /**
      * Constant: HEADER_HEIGHT
      * {Integer} height of the header in pixels
      * Defaults to 90
      */
      HEADER_HEIGHT: 0,
-   
+
     /**
      * Constant: CONFIRM_LAYER_REMOVAL
      * {Boolean} Do we want a popup dialog to appear on layer removal ?
      * Defaults to false
      */
     //CONFIRM_LAYER_REMOVAL: false,
-    
+
     /**
      * Constant: WMS_SERVERS
      * {Array} List of externals WMS to display in the WMS servers tab.
      */
     WMS_SERVERS: [
-        {"name": "GÃ©oBretagne - service bretagne",
+        {"name": "GéoBretagne - service bretagne",
  "url": "http://geobretagne.fr/geoserver/bzh/wms"},
-        {"name": "GÃ©oBretagne - rÃ©fÃ©rentiels", "url": "http://geobretagne.fr/geoserver/ref/wms"},
-        {"name": "GÃ©oBretagne - service dÃ©partement 22", "url": "http://geobretagne.fr/geoserver/d22/wms"},
-        {"name": "GÃ©oBretagne - service dÃ©partement 29", "url": "http://geobretagne.fr/geoserver/d29/wms"},
-        {"name": "GÃ©oBretagne - service dÃ©partement 35", "url": "http://geobretagne.fr/geoserver/d35/wms"},
-        {"name": "GÃ©oBretagne - service dÃ©partement 56", "url": "http://geobretagne.fr/geoserver/d56/wms"},
-        {"name": "GÃ©oBretagne - service local dÃ©partement 22", "url": "http://geobretagne.fr/geoserver/id22/wms"},
-        {"name": "GÃ©oBretagne - service local dÃ©partement 29", "url": "http://geobretagne.fr/geoserver/id29/wms"},
-        {"name": "GÃ©oBretagne - service local dÃ©partement 35", "url": "http://geobretagne.fr/geoserver/id35/wms"},
-        {"name": "GÃ©oBretagne - service local dÃ©partement 56", "url": "http://geobretagne.fr/geoserver/id56/wms"},
-        {"name": "GÃ©oBretagne - donnÃ©es ouvertes", "url": "http://geobretagne.fr/wmsouvert"},
-        {"name": "RÃ©gion Bretagne - Kartenn", "url":"http://kartenn.region-bretagne.fr/geoserver/rb/wms"},
+        {"name": "GéoBretagne - référentiels", "url": "http://geobretagne.fr/geoserver/ref/wms"},
+        {"name": "GéoBretagne - service département 22", "url": "http://geobretagne.fr/geoserver/d22/wms"},
+        {"name": "GéoBretagne - service département 29", "url": "http://geobretagne.fr/geoserver/d29/wms"},
+        {"name": "GéoBretagne - service département 35", "url": "http://geobretagne.fr/geoserver/d35/wms"},
+        {"name": "GéoBretagne - service département 56", "url": "http://geobretagne.fr/geoserver/d56/wms"},
+        {"name": "GéoBretagne - service local département 22", "url": "http://geobretagne.fr/geoserver/id22/wms"},
+        {"name": "GéoBretagne - service local département 29", "url": "http://geobretagne.fr/geoserver/id29/wms"},
+        {"name": "GéoBretagne - service local département 35", "url": "http://geobretagne.fr/geoserver/id35/wms"},
+        {"name": "GéoBretagne - service local département 56", "url": "http://geobretagne.fr/geoserver/id56/wms"},
+        {"name": "GéoBretagne - données ouvertes", "url": "http://geobretagne.fr/wmsouvert"},
+        {"name": "Région Bretagne - Kartenn", "url":"http://kartenn.region-bretagne.fr/geoserver/rb/wms"},
         {"name":"Pays de Brest", "url":"http://sig001.brest-metropole-oceane.fr/services/Pays_de_Brest/MapServer/WMSServer?"},
-        {"name": "Air Breizh - qualitÃ© de l'air en Bretagne", "url":"http://sig.airbreizh.asso.fr/geoserver/wms"},
-        {"name": "Agrocampus Ouest - UnitÃ© mixte de Recherche Sol Agro et hydrosystÃ¨me Spatialisation", "url":"http://geowww.agrocampus-ouest.fr/geoserver/wms"},
-        {"name": "DREAL Bretagne - DonnÃ©es environnementales en Bretagne", "url":"http://ws.carmen.application.developpement-durable.gouv.fr/WFS/10/Nature_Paysage"},
-        {"name": "IFREMER - Sextant, donnÃ©es marines", "url": "http://www.ifremer.fr/services/wms1"},
-        {"name": "PrÃ©fecture de RÃ©gion - couverture DSL en Bretagne", "url": "http://mapserveur.application.developpement-durable.gouv.fr/map/mapserv?map%3D%2Fopt%2Fdata%2Fcarto%2Fcartelie%2Fprod%2FCETE_Ouest%2Fxdtyr36laj.www.map"},
-        {"name": "MEDDTL - GÃ©ographie et indicateurs liÃ©s au dÃ©veloppement durable", "url": "http://geobretagne.fr/cfg/capabilities/sd1878.sivit.org.xml"},
-        {"name": "MEDDTL - GÃ©oLittoral, donnÃ©es sur le littoral", "url": "http://geolittoral.application.equipement.gouv.fr/wms/metropole"},
+        {"name": "Air Breizh - qualité de l'air en Bretagne", "url":"http://sig.airbreizh.asso.fr/geoserver/wms"},
+        {"name": "Agrocampus Ouest - Unité mixte de Recherche Sol Agro et hydrosystÃ¨me Spatialisation", "url":"http://geowww.agrocampus-ouest.fr/geoserver/wms"},
+        {"name": "DREAL Bretagne - Données environnementales en Bretagne", "url":"http://ws.carmen.application.developpement-durable.gouv.fr/WFS/10/Nature_Paysage"},
+        {"name": "IFREMER - Sextant, données marines", "url": "http://www.ifremer.fr/services/wms1"},
+        {"name": "Préfecture de Région - couverture DSL en Bretagne", "url": "http://mapserveur.application.developpement-durable.gouv.fr/map/mapserv?map%3D%2Fopt%2Fdata%2Fcarto%2Fcartelie%2Fprod%2FCETE_Ouest%2Fxdtyr36laj.www.map"},
+        {"name": "MEDDTL - Géographie et indicateurs liés au développement durable", "url": "http://geobretagne.fr/cfg/capabilities/sd1878.sivit.org.xml"},
+        {"name": "MEDDTL - GéoLittoral, données sur le littoral", "url": "http://geolittoral.application.equipement.gouv.fr/wms/metropole"},
         {"name": "MEDDTL - risques naturels (22)", "url": "http://cartorisque.prim.net/wms/22?"},
         {"name": "MEDDTL - risques naturels (29)", "url": "http://cartorisque.prim.net/wms/29?"},
         {"name": "MEDDTL - risques naturels (35)", "url": "http://cartorisque.prim.net/wms/35?"},
         {"name": "MEDDTL - risques naturels (56)", "url": "http://cartorisque.prim.net/wms/56?"},
 /*
-        {"name": "Sandre - donnÃ©es et rÃ©fÃ©rentiels sur l'eau, zonages", "url": "http://services.sandre.eaufrance.fr/geo/zonage"},
-        {"name": "Sandre - donnÃ©es et rÃ©fÃ©rentiels sur l'eau, ouvrages", "url": "http://services.sandre.eaufrance.fr/geo/ouvrage"},
-        {"name": "Sandre - donnÃ©es et rÃ©fÃ©rentiels sur l'eau, stations", "url": "http://services.sandre.eaufrance.fr/geo/stations"},
+        {"name": "Sandre - donn"es et r"f"rentiels sur l'eau, zonages", "url": "http://services.sandre.eaufrance.fr/geo/zonage"},
+        {"name": "Sandre - donn"es et r"f"rentiels sur l'eau, ouvrages", "url": "http://services.sandre.eaufrance.fr/geo/ouvrage"},
+        {"name": "Sandre - donn"es et r"f"rentiels sur l'eau, stations", "url": "http://services.sandre.eaufrance.fr/geo/stations"},
 */
-        {"name": "BRGM - gÃ©ologie", "url": "http://geoservices.brgm.fr/geologie"},
+        {"name": "BRGM - géologie", "url": "http://geoservices.brgm.fr/geologie"},
         {"name": "BRGM - risques", "url": "http://geoservices.brgm.fr/risques"},
-        {"name": "GÃ©osignal - cartes raster", "url": "http://www.geosignal.org/cgi-bin/wmsmap"},
+        {"name": "Géosignal - cartes raster", "url": "http://www.geosignal.org/cgi-bin/wmsmap"},
         {"name": "CORINE Land Cover - occupation des terres", "url": "http://sd1878-2.sivit.org/geoserver/wms"},
-        {"name": "GEST'EAU - gestion intÃ©grÃ©e de l'eau", "url": "http://gesteau.oieau.fr/service"},
-        {"name":"SIG Loire - donnÃ©es Etat en pays de la Loire", "url":"http://carto.sigloire.fr/cgi-bin/mapserv"}
+        {"name": "GEST'EAU - gestion intégrée de l'eau", "url": "http://gesteau.oieau.fr/service"},
+        {"name":"SIG Loire - données Etat en pays de la Loire", "url":"http://carto.sigloire.fr/cgi-bin/mapserv"}
     ],
-    
+
     /**
      * Constant: WFS_SERVERS
      * {Array} List of externals WFS to display in the WFS servers tab.
      */
     WFS_SERVERS: [
-        {"name": "GÃ©oBretagne - service bretagne", "url": "http://geobretagne.fr/geoserver/bzh/wfs"},
-        {"name": "GÃ©oBretagne - rÃ©fÃ©rentiels", "url": "http://geobretagne.fr/geoserver/ref/wfs"},
-        {"name": "GÃ©oBretagne - service dÃ©partement 22", "url": "http://geobretagne.fr/geoserver/d22/wfs"},
-        {"name": "GÃ©oBretagne - service dÃ©partement 29", "url": "http://geobretagne.fr/geoserver/d29/wfs"},
-        {"name": "GÃ©oBretagne - service dÃ©partement 35", "url": "http://geobretagne.fr/geoserver/d35/wfs"},
-        {"name": "GÃ©oBretagne - service dÃ©partement 56", "url": "http://geobretagne.fr/geoserver/d56/wfs"},
-        {"name": "GÃ©oBretagne - service local dÃ©partement 22", "url": "http://geobretagne.fr/geoserver/id22/wfs"},
-        {"name": "GÃ©oBretagne - service local dÃ©partement 29", "url": "http://geobretagne.fr/geoserver/id29/wfs"},
-        {"name": "GÃ©oBretagne - service local dÃ©partement 35", "url": "http://geobretagne.fr/geoserver/id35/wfs"},
-        {"name": "GÃ©oBretagne - service local dÃ©partement 56", "url": "http://geobretagne.fr/geoserver/id56/wfs"}
+        {"name": "GéoBretagne - service bretagne", "url": "http://geobretagne.fr/geoserver/bzh/wfs"},
+        {"name": "GéoBretagne - référentiels", "url": "http://geobretagne.fr/geoserver/ref/wfs"},
+        {"name": "GéoBretagne - service département 22", "url": "http://geobretagne.fr/geoserver/d22/wfs"},
+        {"name": "GéoBretagne - service département 29", "url": "http://geobretagne.fr/geoserver/d29/wfs"},
+        {"name": "GéoBretagne - service département 35", "url": "http://geobretagne.fr/geoserver/d35/wfs"},
+        {"name": "GéoBretagne - service département 56", "url": "http://geobretagne.fr/geoserver/d56/wfs"},
+        {"name": "GéoBretagne - service local département 22", "url": "http://geobretagne.fr/geoserver/id22/wfs"},
+        {"name": "GéoBretagne - service local département 29", "url": "http://geobretagne.fr/geoserver/id29/wfs"},
+        {"name": "GéoBretagne - service local département 35", "url": "http://geobretagne.fr/geoserver/id35/wfs"},
+        {"name": "GéoBretagne - service local département 56", "url": "http://geobretagne.fr/geoserver/id56/wfs"}
     ]
-    
+
     // No trailing comma for the last line (or IE will complain)
 }
