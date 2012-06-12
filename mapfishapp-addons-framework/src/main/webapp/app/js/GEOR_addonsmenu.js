@@ -51,6 +51,7 @@
                         menuaddons.menu.addItem(addonModule.create(map,addonsListItems[i]));
                     }
                 }
+                menuaddons.menu.remove(menuaddons.menu.items.items[0]);
             });
             initialized=true;
         }
@@ -114,7 +115,7 @@
                         //toggleGroup: "map",
                         id:'menuaddons',
                         handler:lazyLoad,
-                        menu: new Ext.menu.Menu({items:[]})
+                        menu: new Ext.menu.Menu({items:[{text:"loading..."}]})
                         });
             }
             return menuitems;
