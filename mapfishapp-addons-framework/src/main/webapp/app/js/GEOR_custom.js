@@ -36,6 +36,7 @@ GEOR.custom = {
      */
     ADDONS_LIST : [{
             title: "profil en long",
+            group:"MNT",
             module: "GEOB.wpsprofile",
             css: "app/addons/profile/profile.css",
             roles: [],
@@ -55,6 +56,7 @@ GEOR.custom = {
             }
         },
         {    title: "Agrocampus",
+            group:"MNT",
             files : ["app/addons/agrocampus/GEOB_wpsagrocampus.js"],
             roles: [],
             css    : "app/addons/agrocampus/agrocampus.css",
