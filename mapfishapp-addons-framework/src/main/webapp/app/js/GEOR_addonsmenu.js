@@ -146,7 +146,7 @@
                         menu: new Ext.menu.Menu({items:[{text:"loading..."}]})
                         });
                 for (var i=0; i<groups.length; i++){
-    				menuitems.initialConfig.menu.addItem({text:groups[i],menu:new Ext.menu.Menu({items:[]})});
+    				menuitems.initialConfig.menu.addItem({text:groups[i],iconCls:'geor-save-map',menu:new Ext.menu.Menu({items:[]})});
 				}				
             }
             return menuitems;
