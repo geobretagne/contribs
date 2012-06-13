@@ -23,6 +23,23 @@
      * boolean.
      */
     var initialized = false;
+    
+    /**
+     *Method : getGroupItem
+	 * this method returns menuItem index corresponding at the label group passed in parameter
+	 * Parameter: menuaddons : {Ext.Action}, group: string.
+	 *
+	*/		
+	var getGroupItem = function(menuaddons,group){
+		var index = -1;
+			for (var i=0; i<menuaddons.menu.items.items.length; i++){
+				if (menuaddons.menu.items.items[i].text == group){
+					index = i;
+				break;
+				}
+			}
+			return index;
+		};
 
     /**
      *Method : lazyLoad
@@ -48,7 +65,13 @@
                     var module = addonsListItems[i].module;
                     var addonModule = eval(module);
                     if (addonModule && checkRoles(addonsListItems[i].roles)) {
-                        menuaddons.menu.addItem(addonModule.create(map,addonsListItems[i]));
+                        if (addonsListItems[i].group){
+    							var menuGroup = getGroupItem(menuaddons,addonsListItems[i].group);
+								menuaddons.menu.items.items[menuGroup].menu.addItem(addonModule.create(map,addonsListItems[i]));
+						}
+						else {
+								menuaddons.menu.addItem(addonModule.create(map,addonsListItems[i]));
+						}                       
                     }
                 }
                 menuaddons.menu.remove(menuaddons.menu.items.items[0]);
@@ -110,13 +133,21 @@
             addonsListItems = GEOR.config.ADDONS_LIST;
             var menuitems = null;
             if (addonsListItems.length > 0) {
+                var groups = [];
+    			for (var i=0; i<addonsListItems.length; i++){	
+					if (addonsListItems[i].group && groups.indexOf(addonsListItems[i].group) == -1){
+						groups.push(addonsListItems[i].group);
+					}
+				}					
                 menuitems =    new Ext.Action(
-                    {text: OpenLayers.i18n("Géotraitements"),
-                        //toggleGroup: "map",
+                    {text: OpenLayers.i18n("Tools"),                        
                         id:'menuaddons',
                         handler:lazyLoad,
                         menu: new Ext.menu.Menu({items:[{text:"loading..."}]})
                         });
+                for (var i=0; i<groups.length; i++){
+    				menuitems.initialConfig.menu.addItem({text:groups[i],menu:new Ext.menu.Menu({items:[]})});
+				}				
             }
             return menuitems;
         }
