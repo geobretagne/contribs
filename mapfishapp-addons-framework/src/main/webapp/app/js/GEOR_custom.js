@@ -45,7 +45,7 @@ GEOR.custom = {
                 "lib/externals/openlayers/lib/OpenLayers/Icon.js",
                 "lib/externals/openlayers/lib/OpenLayers/Marker.js",
                 "lib/externals/openlayers/lib/OpenLayers/Layer/Markers.js",
-                "lib/pywps/WPS.js",
+                "app/addons/profile/WPS.js",
                 "lib/externals/ext/examples/ux/fileuploadfield/FileUploadField.js",
                 "app/addons/profile/lang.js",
                 "app/addons/profile/GEOB_wpsprofile.js"],
