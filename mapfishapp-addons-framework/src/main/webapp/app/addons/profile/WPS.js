@@ -846,7 +846,10 @@ OpenLayers.WPS = OpenLayers.Class({
                 var node = complexData[0].childNodes[i];
                 if (node.nodeType == 1) {
                 	nodes.push(node); 
-                }
+                }               
+                if (node.nodeType == 3) {
+			nodes.push(complexData[0].textContent);
+		}
             }
             output.setValue(nodes);
             // if output is still empty, try to fetch the text content 
