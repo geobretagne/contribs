@@ -67,7 +67,8 @@
                     if (addonModule && checkRoles(addonsListItems[i].roles)) {
                         if (addonsListItems[i].group){
                                 var menuGroup = getGroupItem(menuaddons,addonsListItems[i].group);
-                                menuaddons.menu.items.items[menuGroup].menu.addItem(addonModule.create(map,addonsListItems[i]));
+                                menuaddons.menu.items.items[menuGroup].menu.addItem(
+                                    addonModule.create(map,addonsListItems[i]));
                         }
                         else {
                                 menuaddons.menu.addItem(addonModule.create(map,addonsListItems[i]));
@@ -146,7 +147,8 @@
                         menu: new Ext.menu.Menu({items:[{text:"loading..."}]})
                         });
                 for (var j=0; j<groups.length; j++){
-                    menuitems.initialConfig.menu.addItem({text:groups[j],iconCls:'geor-save-map',menu:new Ext.menu.Menu({items:[]})});
+                    menuitems.initialConfig.menu.addItem({text:groups[j],iconCls:'geor-save-map',
+                        menu:new Ext.menu.Menu({items:[]})});
                 }                
             }
             return menuitems;
