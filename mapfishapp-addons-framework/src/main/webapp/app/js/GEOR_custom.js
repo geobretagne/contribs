@@ -55,7 +55,7 @@ GEOR.custom = {
                 colors:['FF0000','556B2F','6495ED']
             }
         },
-        {    title: "Agrocampus",
+        {   title: "Agrocampus",
             group:"MNT",
             files : ["app/addons/agrocampus/GEOB_wpsagrocampus.js"],
             roles: [],
@@ -64,7 +64,35 @@ GEOR.custom = {
             options:{wpsurl:"http://geowww.agrocampus-ouest.fr/cgi-bin/mntsurf.cgi",
                     identifier: "infomnt"}
         },
-        {    title: "menu démo",
+        {    title: "Cadastre",
+            description: "Outil de localisation",
+            files : ["http://kartenn.region-bretagne.fr/ext3.4/examples/ux/statusbar/StatusBar.js",
+            "lib/externals/openlayers/lib/OpenLayers/Format/GeoJSON.js",
+            "app/addons/cadastre/GEOB_cadastre.js"],
+            roles: [],
+            css    : "app/addons/cadastre/cadastre.css",
+            module : "GEOB.cadastre",
+            options:{communes:{
+                        wfsurl:'http://geobretagne.fr/geoserver/geob_loc/wfs',
+                        typename:'geob_loc:COMMUNE',
+                        idfield:'INSE',
+                        labelfield:'COMMUNE'},
+                    sections:{
+                        wfsurl:'http://geobretagne.fr/geoserver/ref/wfs',
+                        typename:'ref:cadastre_section',
+                        criterefield:'insee',
+                        labelfield:'texnumsect'},
+                    parcelles:{
+                        wfsurl:'http://geobretagne.fr/geoserver/ref/wfs',
+                        typename:'ref:cadastre_parcelle',
+                        idfield:'texnumparc',
+                        criterefield1:'insee',
+                        criterefield2:'section',
+                        labelfield:'texnumparc'},
+                    animation:false
+                    }
+        },
+        {   title: "menu démo",
             files: ["app/addons/model/lang.js","app/addons/model/GEOB_addonmodel.js"],
             roles: ["ROLE_ANONYMOUS"],
             css: "app/addons/model/model.css",

@@ -307,10 +307,10 @@ GEOR.toolbar = (function() {
 
         items.push("-");
 
-        // TODO : ADDONS MENU
+        //  ADDONS MENU
         if (GEOR.addonsmenu){
             var addonsMenu = GEOR.addonsmenu.create(map);
-            if (addonsMenu!=null){
+            if (addonsMenu!== null){
                 items.push(addonsMenu);
                 items.push("-");
             }
@@ -355,7 +355,7 @@ GEOR.toolbar = (function() {
             return confirm("Vous allez quitter cette page et perdre le contexte cartographique courant");
             // ou : "Pour vous connecter, nous vous redirigeons vers une autre page web. Vous risquez de perdre le contexte cartographique courant. Vous pouvez le sauvegarder en annulant cette opération, et en cliquant sur Espace de travail > Sauvegarder la carte" ?
         }
-    };
+    }
 
 
 })();

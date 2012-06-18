@@ -337,12 +337,12 @@ GEOR.config = (function() {
          */ 
         PDF_FILENAME: getCustomParameter("PDF_FILENAME", 
             "georchestra_${yyyy-MM-dd_hhmmss}"),
-			
-		/**
-		 * Catalog: WPS_LIST		 
-		 * Used by GEOR_toolbar.js
-		 */
-		ADDONS_LIST: getCustomParameter("ADDONS_LIST",[]),
+            
+        /**
+         * Catalog: ADDONS_LIST         
+         * Used by GEOR_toolbar.js
+         */
+        ADDONS_LIST: getCustomParameter("ADDONS_LIST",[]),
         
         /**
          * Constant: GEOSERVER_WFS_URL
@@ -788,5 +788,5 @@ GEOR.config = (function() {
             {"name": "Corine Land Cover", "url": "http://sd1878-2.sivit.org/geoserver/wfs"}
         ])
     // No trailing comma for the last line (or IE will complain)
-    };
+    }
 })();

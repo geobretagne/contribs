@@ -44,8 +44,8 @@ OpenLayers.WPS = OpenLayers.Class({
      * {String}
      */
     version: "1.0.0",
-	
-	defaultVersion: "1.0.0",
+    
+    defaultVersion: "1.0.0",
     /**
      * Property: getCapabilitiesUrlGet
      * {String}
@@ -506,7 +506,7 @@ OpenLayers.WPS = OpenLayers.Class({
         cmplxData = (cmplxData.length ? cmplxData : dom.getElementsByTagName("ComplexOutput"));
 
 
-	 if (cmplxData.length > 0) {
+     if (cmplxData.length > 0) {
             // default format first
             var formatsNode = cmplxData[0].getElementsByTagName("Default")[0].getElementsByTagName("Format")[0];
             var frmts = formatsNode.getElementsByTagName("MimeType")[0].firstChild.nodeValue;
@@ -519,7 +519,7 @@ OpenLayers.WPS = OpenLayers.Class({
                     formats.push(format);
                 }
             }
-	 }
+     }
 
 
         var asReference = true;
@@ -617,8 +617,8 @@ OpenLayers.WPS = OpenLayers.Class({
             // allowedValues
             for (var i = 0; i < nodes.length; i++) {
                 if (nodes[i].nodeType != 1) { continue; } // skip text and comments
-				//--MODIF SP bugg ie
-				//if (nodes[i].localName == "Value") {
+                //--MODIF SP bugg ie
+                //if (nodes[i].localName == "Value") {
                 if (nodes[i].localName == "Value" || nodes[i].baseName == "Value") {
                     allowedValues.push(nodes[i].firstChild.nodeValue);
                 }
@@ -827,29 +827,29 @@ OpenLayers.WPS = OpenLayers.Class({
         var literalData = OpenLayers.Format.XML.prototype.getElementsByTagNameNS(dom,this.wpsNS,  "LiteralData");
         var complexData = OpenLayers.Format.XML.prototype.getElementsByTagNameNS(dom,this.wpsNS,  "ComplexData");
         var boundingBoxData = OpenLayers.Format.XML.prototype.getElementsByTagNameNS(dom,this.wpsNS,  "BoundingBox");
-	var reference = OpenLayers.Format.XML.prototype.getElementsByTagNameNS(dom,this.wpsNS,  "Reference");
-	
+    var reference = OpenLayers.Format.XML.prototype.getElementsByTagNameNS(dom,this.wpsNS,  "Reference");
+    
 
-	if (reference.length > 0) {
+    if (reference.length > 0) {
             output.setValue(OpenLayers.Format.XML.prototype.getAttributeNS(reference[0],"", "href"));
         }
         else if(literalData.length > 0) {
             //output.setValue(literalData[0].firstChild.nodeValue);
-			//Modification S. Pelhate bugg Firefox 4096 limit nodeValue
-			output.setValue(OpenLayers.Format.XML.prototype.concatChildValues(literalData[0]));
-			
+            //Modification S. Pelhate bugg Firefox 4096 limit nodeValue
+            output.setValue(OpenLayers.Format.XML.prototype.concatChildValues(literalData[0]));
+            
         }
         else if (complexData.length > 0) {
             // set output do DOM
-        	nodes=new Array();
+            nodes=new Array();
             for (var i = 0; i < complexData[0].childNodes.length; i++) {
                 var node = complexData[0].childNodes[i];
                 if (node.nodeType == 1) {
-                	nodes.push(node); 
+                    nodes.push(node); 
                 }               
                 if (node.nodeType == 3) {
-			nodes.push(complexData[0].textContent);
-		}
+                    nodes.push(complexData[0].textContent);
+                }
             }
             output.setValue(nodes);
             // if output is still empty, try to fetch the text content 
@@ -858,15 +858,15 @@ OpenLayers.WPS = OpenLayers.Class({
             }
         }
         else if (boundingBoxData.length > 0 ) {
-	    var minxy; var maxxy;
-	    minxy = OpenLayers.Format.XML.prototype.getElementsByTagNameNS(boundingBoxData,this.owsNS,  "LowerCorner");
-	    maxxy = OpenLayers.Format.XML.prototype.getElementsByTagNameNS(boundingBoxData,this.owsNS,  "UpperCorner");
-	    var crs = boundingBoxData.getAttribute("crs");
-	    var dimensions = boundingBoxData.getAttribute("dimensions");
+        var minxy; var maxxy;
+        minxy = OpenLayers.Format.XML.prototype.getElementsByTagNameNS(boundingBoxData,this.owsNS,  "LowerCorner");
+        maxxy = OpenLayers.Format.XML.prototype.getElementsByTagNameNS(boundingBoxData,this.owsNS,  "UpperCorner");
+        var crs = boundingBoxData.getAttribute("crs");
+        var dimensions = boundingBoxData.getAttribute("dimensions");
             output.setValue([minxy.split(" ")[0],minxy.split(" ")[1],
-			     maxxy.split(" ")[0],maxxy.split(" ")[1]]);
-	    output.dimensions = dimensions;
-	    output.crs = crs;
+                 maxxy.split(" ")[0],maxxy.split(" ")[1]]);
+        output.dimensions = dimensions;
+        output.crs = crs;
         }
 
     },
@@ -1351,7 +1351,7 @@ OpenLayers.WPS.executeRequestTemplate = '<?xml version="1.0" encoding="UTF-8" st
 OpenLayers.WPS.literalInputTemplate  = "<wps:Input>"+
                                 "<ows:Identifier>$IDENTIFIER$</ows:Identifier>"+
                                 "<wps:Data>"+
-				"<wps:LiteralData>$DATA$</wps:LiteralData>"+
+                "<wps:LiteralData>$DATA$</wps:LiteralData>"+
                                 "</wps:Data>"+
                                 "</wps:Input>";
 
@@ -1373,9 +1373,9 @@ OpenLayers.WPS.complexInputReferenceTemplate = "<wps:Input>"+
 OpenLayers.WPS.complexInputDataTemplate = "<wps:Input>"+
                                 "<ows:Identifier>$IDENTIFIER$</ows:Identifier>"+
                                 "<wps:Data>"+
-				"<wps:ComplexData $FORMAT$>"+
+                "<wps:ComplexData $FORMAT$>"+
                                 "$DATA$"+
-				"</wps:ComplexData>"+
+                "</wps:ComplexData>"+
                                 "</wps:Data>"+
                                 "</wps:Input>";
 /**
@@ -1385,10 +1385,10 @@ OpenLayers.WPS.complexInputDataTemplate = "<wps:Input>"+
 OpenLayers.WPS.boundingBoxInputTemplate = "<wps:Input>"+
                                 "<ows:Identifier>$IDENTIFIER$</ows:Identifier>"+
                                 "<wps:Data>"+
-				'<wps:BoundingBoxData ows:dimensions="$DIMENSIONS$" ows:crs="$CRS$">'+
+                '<wps:BoundingBoxData ows:dimensions="$DIMENSIONS$" ows:crs="$CRS$">'+
                                 "<ows:LowerCorner>$MINX$ $MINY$</ows:LowerCorner>"+
                                 "<ows:UpperCorner>$MAXX$ $MAXY$</ows:UpperCorner>"+
-				"</wps:BoundingBoxData>"+
+                "</wps:BoundingBoxData>"+
                                 "</wps:Data>"+
                                 "</wps:Input>";
 
