@@ -308,9 +308,9 @@ GEOR.toolbar = (function() {
         items.push("-");
 
         //  ADDONS MENU
-        if (GEOR.addonsmenu){
+        if (GEOR.addonsmenu) {
             var addonsMenu = GEOR.addonsmenu.create(map);
-            if (addonsMenu!== null){
+            if (addonsMenu!== null) {
                 items.push(addonsMenu);
                 items.push("-");
             }

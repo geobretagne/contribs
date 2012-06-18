@@ -31,16 +31,24 @@ GEOR.custom = {
     DEFAULT_PRINT_RESOLUTION: "127",
 
     /**
-     * Catalog: ADDONS_LIST
-     * Used by GEOR_addonsmenu.js
+     * Constant: ADDONS_LIST
+     * module: string, the addon class name
+     * List of addons. An addon has following properties :
+     * title: string, the addon title shown in the dropdown menu
+     * group: string, the dropdown menu subentry containing the addon
+     * css: string, the addon own css url
+     * roles: array of strings, the addon will be granted on these roles
+     * files: array of strings, the addons javascript files urls
+     * options: object, the addons own options
      */
-    ADDONS_LIST : [{
-            title: "profil en long",
-            group:"MNT",
+    ADDONS_LIST : [
+        // module profil en long
+        {
+            group: "MNT",
             module: "GEOB.wpsprofile",
-            css: "app/addons/profile/profile.css",
-            roles: [],
-            files: ["lib/externals/openlayers/lib/OpenLayers/Format/OWSCommon/v1_1_0.js",
+            title: "profil en long",
+            files: [
+                "lib/externals/openlayers/lib/OpenLayers/Format/OWSCommon/v1_1_0.js",
                 "app/addons/profile/parseXmlIe.js",
                 "lib/externals/openlayers/lib/OpenLayers/Icon.js",
                 "lib/externals/openlayers/lib/OpenLayers/Marker.js",
@@ -48,60 +56,85 @@ GEOR.custom = {
                 "app/addons/profile/WPS.js",
                 "lib/externals/ext/examples/ux/fileuploadfield/FileUploadField.js",
                 "app/addons/profile/lang.js",
-                "app/addons/profile/GEOB_wpsprofile.js"],
+                "app/addons/profile/GEOB_wpsprofile.js"
+            ],
+            css: "app/addons/profile/profile.css",
+            roles: [],
             options: {
-                wpsurl:"http://geobretagne.fr/wps/mnt",
+                wpsurl: "http://geobretagne.fr/wps/mnt",
                 identifier: "getProfileProcess3",
-                colors:['FF0000','556B2F','6495ED']
+                colors: [
+                    'FF0000',
+                    '556B2F',
+                    '6495ED'
+                ]
             }
         },
-        {   title: "Agrocampus",
+        // module MNT agrocampus
+        {
             group:"MNT",
-            files : ["app/addons/agrocampus/GEOB_wpsagrocampus.js"],
-            roles: [],
-            css    : "app/addons/agrocampus/agrocampus.css",
             module : "GEOB.wpsagrocampus",
-            options:{wpsurl:"http://geowww.agrocampus-ouest.fr/cgi-bin/mntsurf.cgi",
-                    identifier: "infomnt"}
-        },
-        {    title: "Cadastre",
-            description: "Outil de localisation",
-            files : ["http://kartenn.region-bretagne.fr/ext3.4/examples/ux/statusbar/StatusBar.js",
-            "lib/externals/openlayers/lib/OpenLayers/Format/GeoJSON.js",
-            "app/addons/cadastre/GEOB_cadastre.js"],
+            title: "Agrocampus",
+            files: ["app/addons/agrocampus/GEOB_wpsagrocampus.js"],
+            css: "app/addons/agrocampus/agrocampus.css",
             roles: [],
-            css    : "app/addons/cadastre/cadastre.css",
-            module : "GEOB.cadastre",
-            options:{communes:{
-                        wfsurl:'http://geobretagne.fr/geoserver/geob_loc/wfs',
-                        typename:'geob_loc:COMMUNE',
-                        idfield:'INSE',
-                        labelfield:'COMMUNE'},
-                    sections:{
-                        wfsurl:'http://geobretagne.fr/geoserver/ref/wfs',
-                        typename:'ref:cadastre_section',
-                        criterefield:'insee',
-                        labelfield:'texnumsect'},
-                    parcelles:{
-                        wfsurl:'http://geobretagne.fr/geoserver/ref/wfs',
-                        typename:'ref:cadastre_parcelle',
-                        idfield:'texnumparc',
-                        criterefield1:'insee',
-                        criterefield2:'section',
-                        labelfield:'texnumparc'},
-                    animation:false
-                    }
+            options: {
+                wpsurl: "http://geowww.agrocampus-ouest.fr/cgi-bin/mntsurf.cgi",
+                identifier: "infomnt"
+            }
         },
-        {   title: "menu démo",
-            files: ["app/addons/model/lang.js","app/addons/model/GEOB_addonmodel.js"],
-            roles: ["ROLE_ANONYMOUS"],
-            css: "app/addons/model/model.css",
+        // module recherche cadastre
+        {
+            title: "Cadastre",
+            description: "Outil de localisation",
+            files : [
+                "http://kartenn.region-bretagne.fr/ext3.4/examples/ux/statusbar/StatusBar.js",
+                "lib/externals/openlayers/lib/OpenLayers/Format/GeoJSON.js",
+                "app/addons/cadastre/GEOB_cadastre.js"
+            ],
+            css: "app/addons/cadastre/cadastre.css",
+            roles: [],
+            module: "GEOB.cadastre",
+            options: {
+                communes: {
+                    wfsurl: 'http://geobretagne.fr/geoserver/geob_loc/wfs',
+                    typename: 'geob_loc:COMMUNE',
+                    idfield: 'INSE',
+                    labelfield: 'COMMUNE'
+                },
+                sections: {
+                    wfsurl: 'http://geobretagne.fr/geoserver/ref/wfs',
+                    typename: 'ref:cadastre_section',
+                    criterefield: 'insee',
+                    labelfield: 'texnumsect'
+                },
+                parcelles: {
+                    wfsurl: 'http://geobretagne.fr/geoserver/ref/wfs',
+                    typename: 'ref:cadastre_parcelle',
+                    idfield: 'texnumparc',
+                    criterefield1: 'insee',
+                    criterefield2: 'section',
+                    labelfield: 'texnumparc'
+                },
+                animation: false
+            }
+        },
+        // module demo
+        {
             module: "GEOB.addonmodel",
+            title: "menu démo",
+            files: [
+                "app/addons/model/lang.js",
+                "app/addons/model/GEOB_addonmodel.js"
+            ],
+            css: "app/addons/model/model.css",
+            roles: ["ROLE_ANONYMOUS"],
             options: {
                 option1: "modele",
                 option2: 3
             }
-        }],
+        }
+    ],
 
     /**
      * Constant: GEOSERVER_WFS_URL
