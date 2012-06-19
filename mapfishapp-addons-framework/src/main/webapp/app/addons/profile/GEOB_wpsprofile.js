@@ -8,9 +8,9 @@
  * @include OpenLayers/Ajax.js
  * 
  */
-Ext.namespace("GEOB");
+Ext.namespace("GEOR");
 
-GEOB.wpsprofile = (function () {
+GEOR.wpsprofile = (function () {
 
     /*
      * Private
@@ -26,6 +26,9 @@ GEOB.wpsprofile = (function () {
      * {OpenLayers.Map} The map instance.
      */
     var map = null;
+	
+	var title = "Profil en long";
+	var abstract = "Boîte à outils profil en long";
     /**
      * Property: initialized
      * occurs when the wps describeProcess returns a response
@@ -971,6 +974,12 @@ GEOB.wpsprofile = (function () {
          */
         create: function (m, wpsconfig) {
             map = m;
+			if (wpsconfig.options.title){
+				title = wpsconfig.options.title;
+			}
+			if (wpsconfig.options.abstract){
+				abstract = wpsconfig.options.abstract;
+			}
             markersLayer = new OpenLayers.Layer.Markers("WpsMarker", {
                 displayInLayerSwitcher: false
             });
@@ -999,9 +1008,18 @@ GEOB.wpsprofile = (function () {
             wps_identifier = wpsconfig.options.identifier;
 
             var menuitems = new Ext.menu.Item({
-                text: wpsconfig.title,
+                text: title,								
                 id: 'wpsprofiletools',
                 iconCls: "wps-linechart",
+				qtip: abstract,
+				listeners:{afterrender: function( thisMenuItem ) { 
+							Ext.QuickTips.register({
+								target: thisMenuItem.getEl().getAttribute("id"),
+								title: thisMenuItem.initialConfig.text,
+								text: thisMenuItem.initialConfig.qtip
+							});
+						}
+				},
                 menu: new Ext.menu.Menu({
                     listeners: {
                         beforeshow: function () {
@@ -1009,7 +1027,7 @@ GEOB.wpsprofile = (function () {
                             if (initialized == false) {
                                 describeProcess(wps_url, wps_identifier);
                             }
-                        }
+                        }						
                     },
                     items: [
                     new Ext.menu.CheckItem(new GeoExt.Action({

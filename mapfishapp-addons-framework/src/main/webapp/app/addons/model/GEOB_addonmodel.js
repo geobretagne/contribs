@@ -7,9 +7,9 @@
  * @include OpenLayers/Format/OWSCommon/v1_1_0.js 
  * 
  */
-Ext.namespace("GEOB");
+Ext.namespace("GEOR");
 
-GEOB.addonmodel = (function () {
+GEOR.addonmodel = (function () {
 
     /*
      * Private
@@ -20,13 +20,16 @@ GEOB.addonmodel = (function () {
      * {OpenLayers.Map} The map instance.
      */
     var map = null;
+	
+	var title = "default title";
+
+	var abstract = "default abstract";
 
 
     /**
      * Property: config
-     *{Object} Hash of options,.
-     */
-
+     *{Object} Hash of options,. */	
+	
     var config = null;
 
     var tr = function (str) {
@@ -70,10 +73,24 @@ GEOB.addonmodel = (function () {
         create: function (m, wpsconfig) {
             map = m;
             config = wpsconfig.options;
-
+			if (config.title){
+				title = config.title;
+			}
+			if (config.abstract){
+				abstract = config.abstract;
+			}
             var menuitems = new Ext.menu.Item({
-                text: wpsconfig.title,
+                text: title,				
                 iconCls: 'model-icon',
+				qtip: abstract,
+				listeners:{afterrender: function( thisMenuItem ) { 
+							Ext.QuickTips.register({
+								target: thisMenuItem.getEl().getAttribute("id"),
+								title: thisMenuItem.initialConfig.text,
+								text: thisMenuItem.initialConfig.qtip
+							});
+						}
+				},
                 menu: new Ext.menu.Menu({
                     items: [{
                         text: tr("addonmodel.extent"),

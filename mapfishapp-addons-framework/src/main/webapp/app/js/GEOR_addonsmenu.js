@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) Camptocamp
+ * Copyright (C) Geobretagne
  *
  * This file is NOT part of geOrchestra (well, not yet)
  *
@@ -57,18 +57,22 @@ GEOR.addonsmenu = (function () {
     };
 
     /**
-     *Method : loadCssFile
-     * this method loads dynamically the css file passed in parameter
+     *Method : loadCssFiles
+     * this method loads dynamically the css files passed in parameter
      * this method is used because Ext.Loader does not works with css files
      * Parameter:
-     * filename - css file.
+     * [filename - css files].
      */
-    var loadCssFile = function (filename) {
-        var fileref = document.createElement("link");
-        fileref.setAttribute("rel", "stylesheet");
-        fileref.setAttribute("type", "text/css");
-        fileref.setAttribute("href", filename);
-        document.getElementsByTagName("head")[0].appendChild(fileref);
+    var loadCssFiles = function (filenames) {
+        var i = 0;
+        for (i = 0; i < filenames.length; i += 1) {
+            var fileref = document.createElement("link");
+            fileref.setAttribute("rel", "stylesheet");
+            fileref.setAttribute("type", "text/css");
+            fileref.setAttribute("href", filenames[i]);
+            document.getElementsByTagName("head")[0].appendChild(fileref);        
+        }
+        
     };
 
     /**
@@ -78,10 +82,10 @@ GEOR.addonsmenu = (function () {
      *
      */
     var checkRoles = function (okRoles) {
-        // module is available for everyone if okRoles is empty:
+        // addon is available for everyone if okRoles is empty:
         var ok = (okRoles.length === 0);
         var i = 0;
-        // else, check existence of required role to activate module:
+        // else, check existence of required role to activate addon:
         for (i = 0; i < okRoles.length; i += 1) {
             if (GEOR.config.ROLES.indexOf(okRoles[i]) >= 0) {
                 ok = true;
@@ -103,12 +107,12 @@ GEOR.addonsmenu = (function () {
             i = 0;
             j = 0;
             for (i = 0; i < addonsListItems.length; i += 1) {
-                var files = addonsListItems[i].files;
+                var files = addonsListItems[i].js;
                 for (j = 0; j < files.length; j += 1) {
                     libs.push(files[j]);
                 }
                 if (addonsListItems[i].css) {
-                    loadCssFile(addonsListItems[i].css);
+                    loadCssFiles(addonsListItems[i].css);
                 }
 
             }
@@ -116,22 +120,21 @@ GEOR.addonsmenu = (function () {
                 var i = 0;
                 var menuaddons = Ext.getCmp('menuaddons');
                 for (i = 0; i < addonsListItems.length; i += 1) {
-                    var module = addonsListItems[i].module;
-                    // FIXME : eval is evil
-                    var addonModule = eval(module);
-                    if (addonModule && checkRoles(addonsListItems[i].roles)) {
-                        if (addonsListItems[i].group) {
-                            var menuGroup = getGroupItem(menuaddons, addonsListItems[i].group);
+                    var addon = addonsListItems[i].module;                    
+                    var addonObject = GEOR[addon];
+                    if (addonObject && checkRoles(addonsListItems[i].options.roles ? addonsListItems[i].options.roles : [])) {
+                        if (addonsListItems[i].options.group) {
+                            var menuGroup = getGroupItem(menuaddons, addonsListItems[i].options.group);
                             menuaddons.menu.items.items[menuGroup].menu.addItem(
-                                addonModule.create(map, addonsListItems[i])
+                                addonObject.create(map, addonsListItems[i])
                             );
                         } else {
-                            menuaddons.menu.addItem(addonModule.create(map, addonsListItems[i]));
+                            menuaddons.menu.addItem(addonObject.create(map, addonsListItems[i]));
                         }
                     }
                 }
                 menuaddons.menu.remove(menuaddons.menu.items.items[0]);
-            });
+            }, this, true);
             initialized = true;
         }
     };
@@ -162,8 +165,8 @@ GEOR.addonsmenu = (function () {
                 var i = 0;
                 var j = 0;
                 for (i = 0; i < addonsListItems.length; i += 1) {
-                    if (addonsListItems[i].group && groups.indexOf(addonsListItems[i].group) === -1) {
-                        groups.push(addonsListItems[i].group);
+                    if (addonsListItems[i].options.group && groups.indexOf(addonsListItems[i].options.group) === -1) {
+                        groups.push(addonsListItems[i].options.group);
                     }
                 }
                 menuitems = new Ext.Action(

@@ -41,19 +41,18 @@ GEOR.custom = {
      * files: array of strings, the addons javascript files urls
      * options: object, the addons own options
      */
-    ADDONS_LIST : [
-        // module profil en long
-        // TODO : use array also for CSS
-        // TODO : make title optional with default parameter in the addon, put it in options
-        // TODO : add an options abstract parameter with default value
+    ADDONS_LIST : [        
+        // DONE : use array also for CSS
+        // DONE : make title optional with default parameter in the addon, put it in options
+        // DONE : add an options abstract parameter with default value
         // TODO : make group optional with default parameter in the addon, put it in options
         // TODO : make roles optional with default parameter in the addon, put it in options
-        // TODO : rename "files" into "js"
+        // DONE : rename "files" into "js"
+		
+		// module profil en long
         {
-            group: "MNT",
-            module: "GEOB.wpsprofile",
-            title: "profil en long",
-            files: [
+            module: "wpsprofile",            
+            js: [
                 "lib/externals/openlayers/lib/OpenLayers/Format/OWSCommon/v1_1_0.js",
                 "app/addons/profile/parseXmlIe.js",
                 "lib/externals/openlayers/lib/OpenLayers/Icon.js",
@@ -64,9 +63,11 @@ GEOR.custom = {
                 "app/addons/profile/lang.js",
                 "app/addons/profile/GEOB_wpsprofile.js"
             ],
-            css: "app/addons/profile/profile.css",
-            roles: [],
+            css: ["app/addons/profile/profile.css"],            
             options: {
+                title: "profil en long",
+                abstract: "résumé 1",
+                group: "MNT",				
                 wpsurl: "http://geobretagne.fr/wps/mnt",
                 identifier: "getProfileProcess3",
                 colors: [
@@ -78,30 +79,27 @@ GEOR.custom = {
         },
         // module MNT agrocampus
         {
-            group:"MNT",
-            module : "GEOB.wpsagrocampus",
-            title: "Agrocampus",
-            files: ["app/addons/agrocampus/GEOB_wpsagrocampus.js"],
-            css: "app/addons/agrocampus/agrocampus.css",
-            roles: [],
+            module : "wpsagrocampus",            
+            js: ["app/addons/agrocampus/GEOB_wpsagrocampus.js"],
+            css: ["app/addons/agrocampus/agrocampus.css"],            
             options: {
+                title: "Agrocampus",
+                abstract: "test agrocampus",
+                group: "MNT",				
                 wpsurl: "http://geowww.agrocampus-ouest.fr/cgi-bin/mntsurf.cgi",
                 identifier: "infomnt"
             }
         },
         // module recherche cadastre
         {
-            title: "Cadastre",
-            description: "Outil de localisation",
-            files : [
-                "http://kartenn.region-bretagne.fr/ext3.4/examples/ux/statusbar/StatusBar.js",
+            module: "cadastre",
+            js : [
+                "lib/externals/ext/examples/ux/statusbar/StatusBar.js",
                 "lib/externals/openlayers/lib/OpenLayers/Format/GeoJSON.js",
                 "app/addons/cadastre/GEOB_cadastre.js"
             ],
-            css: "app/addons/cadastre/cadastre.css",
-            roles: [],
-            module: "GEOB.cadastre",
-            options: {
+            css: ["app/addons/cadastre/cadastre.css"],           
+            options: {				
                 communes: {
                     wfsurl: 'http://geobretagne.fr/geoserver/geob_loc/wfs',
                     typename: 'geob_loc:COMMUNE',
@@ -122,20 +120,21 @@ GEOR.custom = {
                     criterefield2: 'section',
                     labelfield: 'texnumparc'
                 },
-                animation: false
+                animation: true
             }
         },
         // module demo
         {
-            module: "GEOB.addonmodel",
-            title: "menu démo",
-            files: [
+            module: "addonmodel",            
+            js: [
                 "app/addons/model/lang.js",
                 "app/addons/model/GEOB_addonmodel.js"
             ],
-            css: "app/addons/model/model.css",
-            roles: ["ROLE_ANONYMOUS"],
+            css: ["app/addons/model/model.css"],            
             options: {
+                title: "Démo",
+                abstract: "Démo",				
+                roles: ["ROLE_SV_USER"],
                 option1: "modele",
                 option2: 3
             }

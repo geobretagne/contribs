@@ -1,6 +1,6 @@
-﻿Ext.namespace("GEOB");
+﻿Ext.namespace("GEOR");
 
-GEOB.cadastre = (function () {
+GEOR.cadastre = (function () {
 
     /*
      * Private
@@ -11,6 +11,8 @@ GEOB.cadastre = (function () {
      * {OpenLayers.Map} The map instance.
      */
     var map = null;
+	var title = "Rechercher cadastrale";
+	var abstract = "Localiser une parcelle cadastrale en fonction d'une commune et d'une section";
     var parcelLayer = null;
     var animationTimer = null;
     var loop = null;
@@ -366,6 +368,12 @@ GEOB.cadastre = (function () {
             parcelLayer.setZIndex(1000);
             map.addLayers([parcelLayer]);
             config = wpsconfig.options;
+			if (config.title){
+				title = config.title;
+			}
+			if (config.abstract){
+				abstract = config.abstract;
+			}
 
             communes = new Ext.data.JsonStore({
                 fields: [{
@@ -408,8 +416,17 @@ GEOB.cadastre = (function () {
             });
 
             var menuitems = new Ext.menu.Item({
-                text: wpsconfig.title,
+                text: title,				
                 iconCls: 'cadastre-icon',
+				qtip: abstract,
+				listeners:{afterrender: function( thisMenuItem ) { 
+							Ext.QuickTips.register({
+								target: thisMenuItem.getEl().getAttribute("id"),
+								title: thisMenuItem.initialConfig.text,
+								text: thisMenuItem.initialConfig.qtip
+							});
+						}
+				},
                 menu: new Ext.menu.Menu({
                     items: [{
                         text: 'Rechercher une parcelle',

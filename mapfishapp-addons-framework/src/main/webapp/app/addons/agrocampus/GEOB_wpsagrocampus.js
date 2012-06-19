@@ -7,9 +7,9 @@
  * @include OpenLayers/Format/OWSCommon/v1_1_0.js 
  * 
  */
-Ext.namespace("GEOB");
+Ext.namespace("GEOR");
 
-GEOB.wpsagrocampus = (function () {
+GEOR.wpsagrocampus = (function () {
 
     /*
      * Private
@@ -20,6 +20,9 @@ GEOB.wpsagrocampus = (function () {
      * {OpenLayers.Map} The map instance.
      */
     var map = null;
+	
+	var title = "Infos MNT";
+	var abstract = "Récupérer les informations MNT en un point désiré";
 
     /**
      * Property: url
@@ -136,16 +139,32 @@ GEOB.wpsagrocampus = (function () {
 
         create: function (m, wpsconfig) {
             map = m;
-            wps_url = wpsconfig.options.wpsurl;
-            wps_identifier = wpsconfig.options.identifier;
-            config = wpsconfig;
+			config = wpsconfig.options;
+            wps_url = config.wpsurl;
+            wps_identifier = config.identifier;
+			if (config.title){
+				title = config.title;
+			}
+			if (config.abstract){
+				abstract = config.abstract;
+			}
+            
             defControl();
             click = new OpenLayers.Control.Click();
             map.addControl(click);
 
 
             var menuitems = new Ext.menu.Item({
-                text: wpsconfig.title,
+                text: title,
+				qtip: abstract,
+				listeners:{afterrender: function( thisMenuItem ) { 
+							Ext.QuickTips.register({
+								target: thisMenuItem.getEl().getAttribute("id"),
+								title: thisMenuItem.initialConfig.text,
+								text: thisMenuItem.initialConfig.qtip
+							});
+						}
+				},
                 iconCls: 'wps-infomnt',
                 menu: new Ext.menu.Menu({
                     items: [{
