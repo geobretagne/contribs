@@ -43,6 +43,12 @@ GEOR.custom = {
      */
     ADDONS_LIST : [
         // module profil en long
+        // TODO : use array also for CSS
+        // TODO : make title optional with default parameter in the addon, put it in options
+        // TODO : add an options abstract parameter with default value
+        // TODO : make group optional with default parameter in the addon, put it in options
+        // TODO : make roles optional with default parameter in the addon, put it in options
+        // TODO : rename "files" into "js"
         {
             group: "MNT",
             module: "GEOB.wpsprofile",
