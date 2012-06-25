@@ -45,13 +45,13 @@ GEOR.custom = {
         // DONE : use array also for CSS
         // DONE : make title optional with default parameter in the addon, put it in options
         // DONE : add an options abstract parameter with default value
-        // TODO : make group optional with default parameter in the addon, put it in options
-        // TODO : make roles optional with default parameter in the addon, put it in options
+        // DONE : make group optional with default parameter in the addonmenu, put it in options
+        // DONE : make roles optional with default parameter in the addonmenu, put it in options
         // DONE : rename "files" into "js"
 		
-		// module profil en long
+		// Addon profil en long
         {
-            module: "wpsprofile",            
+            addon: "wpsprofile",            
             js: [
                 "lib/externals/openlayers/lib/OpenLayers/Format/OWSCommon/v1_1_0.js",
                 "app/addons/profile/parseXmlIe.js",
@@ -77,9 +77,9 @@ GEOR.custom = {
                 ]
             }
         },
-        // module MNT agrocampus
+        // Addon MNT agrocampus
         {
-            module : "wpsagrocampus",            
+            adddon : "wpsagrocampus",            
             js: ["app/addons/agrocampus/GEOB_wpsagrocampus.js"],
             css: ["app/addons/agrocampus/agrocampus.css"],            
             options: {
@@ -90,9 +90,9 @@ GEOR.custom = {
                 identifier: "infomnt"
             }
         },
-        // module recherche cadastre
+        // Addon recherche cadastre
         {
-            module: "cadastre",
+            addon: "cadastre",
             js : [
                 "lib/externals/ext/examples/ux/statusbar/StatusBar.js",
                 "lib/externals/openlayers/lib/OpenLayers/Format/GeoJSON.js",
@@ -123,9 +123,25 @@ GEOR.custom = {
                 animation: true
             }
         },
-        // module demo
+        //Addon Magnifier
         {
-            module: "addonmodel",            
+            addon: "magnifier",
+            js: ["app/addons/magnifier/Magnifier.js", "app/addons/magnifier/GEOB_magnifier.js"],
+            css: ["app/addons/magnifier/magnifier.css"],
+            options: {
+                title: "Loupe ortho",
+                abstract: "Afficher l'ortho dans une fenêtre de balayage",
+                roles: [],
+                mode: "static",
+                layer: "satellite",
+                format: "image/jpeg",
+                buffer: 8,
+                wmsurl: "http://tile.geobretagne.fr/gwc02/service/wms"
+            }
+        },
+        // Addon demo
+        {
+            addon: "addonmodel",            
             js: [
                 "app/addons/model/lang.js",
                 "app/addons/model/GEOB_addonmodel.js"

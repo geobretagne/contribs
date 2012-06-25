@@ -120,7 +120,7 @@ GEOR.addonsmenu = (function () {
                 var i = 0;
                 var menuaddons = Ext.getCmp('menuaddons');
                 for (i = 0; i < addonsListItems.length; i += 1) {
-                    var addon = addonsListItems[i].module;                    
+                    var addon = addonsListItems[i].addon;                    
                     var addonObject = GEOR[addon];
                     if (addonObject && checkRoles(addonsListItems[i].options.roles ? addonsListItems[i].options.roles : [])) {
                         if (addonsListItems[i].options.group) {

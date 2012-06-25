@@ -11,7 +11,7 @@ GEOR.cadastre = (function () {
      * {OpenLayers.Map} The map instance.
      */
     var map = null;
-	var title = "Rechercher cadastrale";
+	var title = "Cadastre";
 	var abstract = "Localiser une parcelle cadastrale en fonction d'une commune et d'une section";
     var parcelLayer = null;
     var animationTimer = null;
