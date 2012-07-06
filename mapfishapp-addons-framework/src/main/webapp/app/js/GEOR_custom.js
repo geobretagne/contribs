@@ -101,6 +101,7 @@ GEOR.custom = {
             css: ["app/addons/cadastre/cadastre.css"],           
             options: {				
                 communes: {
+                    requesttype: 'file',
                     wfsurl: 'http://geobretagne.fr/geoserver/geob_loc/wfs',
                     typename: 'geob_loc:COMMUNE',
                     idfield: 'INSE',

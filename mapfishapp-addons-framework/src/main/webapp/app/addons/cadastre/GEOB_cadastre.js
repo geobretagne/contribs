@@ -28,6 +28,8 @@ GEOR.cadastre = (function () {
     var mask_loader = null;
 
     var communes = null;
+    
+    var communesRequestType = null;
 
     var sections = null;
 
@@ -42,19 +44,29 @@ GEOR.cadastre = (function () {
 
     var getCommunes = function () {
             mask_loader.show();
-            var postRequest = '<wfs:GetFeature service="WFS" version="1.0.0"' + ' outputFormat="json"' + ' xmlns:topp="http://www.openplans.org/topp"' + ' xmlns:wfs="http://www.opengis.net/wfs"' + ' xmlns:ogc="http://www.opengis.net/ogc"' + ' xmlns:gml="http://www.opengis.net/gml"' + ' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' + ' xsi:schemaLocation="http://www.opengis.net/wfs' + ' http://schemas.opengis.net/wfs/1.0.0/WFS-basic.xsd">' + ' <wfs:Query typeName="' + config.communes.typename + '">' + ' <ogc:PropertyName>' + config.communes.idfield + '</ogc:PropertyName> ' + ' <ogc:PropertyName>' + config.communes.labelfield + '</ogc:PropertyName>' + ' </wfs:Query>' + ' </wfs:GetFeature>';
+            if (communesRequestType === "file") {
+                OpenLayers.Request.GET({
+                    url: 'app/addons/cadastre/communes.json',
+                    failure: requestFailure,
+                    success: getCommunesSuccess
+                });
+            } else {
+                var postRequest = '<wfs:GetFeature service="WFS" version="1.0.0"' + ' outputFormat="json"' + ' xmlns:topp="http://www.openplans.org/topp"' + ' xmlns:wfs="http://www.opengis.net/wfs"' + ' xmlns:ogc="http://www.opengis.net/ogc"' + ' xmlns:gml="http://www.opengis.net/gml"' + ' xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' + ' xsi:schemaLocation="http://www.opengis.net/wfs' + ' http://schemas.opengis.net/wfs/1.0.0/WFS-basic.xsd">' + ' <wfs:Query typeName="' + config.communes.typename + '">' + ' <ogc:PropertyName>' + config.communes.idfield + '</ogc:PropertyName> ' + ' <ogc:PropertyName>' + config.communes.labelfield + '</ogc:PropertyName>' + ' </wfs:Query>' + ' </wfs:GetFeature>';
 
-            var request = OpenLayers.Request.issue({
-                method: 'POST',
-                headers: {
-                    "Content-Type": "text/xml"
-                },
-                url: config.communes.wfsurl,
-                data: postRequest,
-                failure: requestFailure,
-                success: getCommunesSuccess
-            });
+                var request = OpenLayers.Request.issue({
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "text/xml"
+                    },
+                    url: config.communes.wfsurl,
+                    data: postRequest,
+                    failure: requestFailure,
+                    success: getCommunesSuccess
+                });
+            }
         };
+        
+    
 
     var getSections = function () {
             mask_loader.show();
@@ -360,14 +372,15 @@ GEOR.cadastre = (function () {
          * m - {OpenLayers.Map} The map instance.
          */
 
-        create: function (m, wpsconfig) {
+        create: function (m, addonconfig) {
             map = m;
             parcelLayer = new OpenLayers.Layer.Vector("parcel", {
                 displayInLayerSwitcher: false
             });
             parcelLayer.setZIndex(1000);
             map.addLayers([parcelLayer]);
-            config = wpsconfig.options;
+            config = addonconfig.options;
+            communesRequestType = addonconfig.options.communes.requesttype;
 			if (config.title){
 				title = config.title;
 			}
