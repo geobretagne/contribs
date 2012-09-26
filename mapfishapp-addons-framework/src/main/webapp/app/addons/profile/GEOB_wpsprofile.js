@@ -974,12 +974,15 @@ GEOR.wpsprofile = (function () {
          */
         create: function (m, wpsconfig) {
             map = m;
-			if (wpsconfig.options.title){
-				title = wpsconfig.options.title;
-			}
-			if (wpsconfig.options.abstract){
-				abstract = wpsconfig.options.abstract;
-			}
+	    if (wpsconfig.options.title){
+		title = wpsconfig.options.title;
+	    }
+	    if (wpsconfig.options.abstract){
+	 	abstract = wpsconfig.options.abstract;
+	    }
+	    if (wpsconfig.options.chart){
+                Ext.chart.Chart.CHART_URL= wpsconfig.options.chart;
+            }
             markersLayer = new OpenLayers.Layer.Markers("WpsMarker", {
                 displayInLayerSwitcher: false
             });
