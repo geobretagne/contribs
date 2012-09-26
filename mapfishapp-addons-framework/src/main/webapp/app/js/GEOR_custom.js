@@ -70,6 +70,7 @@ GEOR.custom = {
                 group: "MNT",				
                 wpsurl: "http://geobretagne.fr/wps/mnt",
                 identifier: "getProfileProcess3",
+                chart:"lib/externals/ext/resources/charts.swf",
                 colors: [
                     'FF0000',
                     '556B2F',
