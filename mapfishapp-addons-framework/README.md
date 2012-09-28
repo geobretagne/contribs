@@ -30,7 +30,7 @@ How it works ?
 
 **1- Requirements :**
 
- - Compile mapfish.js with the GEOR-config.js and the new GEOR-toolbar.js
+ - Compile mapfish.js with the modified GEOR-config.js, GEOR_toolbar.js and the new GEOR_addonsmenu.js
  - Edit the GEOR-custom.js ADDON-LIST []. See [model config example]
 
 **2- Process :**

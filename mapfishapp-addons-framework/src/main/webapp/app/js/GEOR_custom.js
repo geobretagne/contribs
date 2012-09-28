@@ -122,7 +122,8 @@ GEOR.custom = {
                     criterefield2: 'section',
                     labelfield: 'texnumparc'
                 },
-                animation: true
+                animation: true,
+                proxy:'../proxy?url='
             }
         },
         //Addon Magnifier

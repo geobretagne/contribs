@@ -26,6 +26,12 @@ GEOR.addonsmenu = (function () {
      */
     var map = null;
 
+     /**
+     * Property: tr
+     * {Function} an alias to OpenLayers.i18n
+     */
+    var tr = null;
+    
     /**
      * Property: addonsListItems
      * Array of {addons} configured in GEOR_custom.js ADDONS_LIST
@@ -158,6 +164,7 @@ GEOR.addonsmenu = (function () {
 
         create: function (m) {
             map = m;
+            tr = OpenLayers.i18n;
             addonsListItems = GEOR.config.ADDONS_LIST;
             var menuitems = null;
             if (addonsListItems.length > 0) {
@@ -171,11 +178,11 @@ GEOR.addonsmenu = (function () {
                 }
                 menuitems = new Ext.Action(
                     {
-                        text: OpenLayers.i18n("Tools"),
+                        text: tr("Tools"),
                         id: 'menuaddons',
                         handler: lazyLoad,
                         menu: new Ext.menu.Menu({
-                            items: [{text: "loading..."}]
+                            items: [{text: tr("loading") + "..."}]
                         })
                     }
                 );

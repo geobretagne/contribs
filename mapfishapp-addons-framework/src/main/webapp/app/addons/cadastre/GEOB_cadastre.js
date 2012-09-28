@@ -387,7 +387,9 @@ GEOR.cadastre = (function () {
 			if (config.abstract){
 				abstract = config.abstract;
 			}
-
+            if (config.proxy){
+				OpenLayers.ProxyHost = config.proxy;
+			}
             communes = new Ext.data.JsonStore({
                 fields: [{
                     name: config.communes.idfield,
