@@ -7,9 +7,9 @@
  * @include OpenLayers/Format/OWSCommon/v1_1_0.js 
  * 
  */
-Ext.namespace("GEOR");
+Ext.namespace("GEOB");
 
-GEOR.wpsagrocampus = (function () {
+GEOB.wpsagrocampus = (function () {
 
     /*
      * Private
@@ -22,7 +22,7 @@ GEOR.wpsagrocampus = (function () {
     var map = null;
 	
 	var title = "Infos MNT";
-	var abstract = "Récupérer les informations MNT en un point désiré";
+	var abstract = "Rï¿½cupï¿½rer les informations MNT en un point dï¿½sirï¿½";
 
     /**
      * Property: url
