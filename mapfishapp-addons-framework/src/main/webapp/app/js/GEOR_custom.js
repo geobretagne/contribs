@@ -80,7 +80,7 @@ GEOR.custom = {
         },
         // Addon MNT agrocampus
         {
-            adddon : "wpsagrocampus",            
+            addon : "wpsagrocampus",            
             js: ["app/addons/agrocampus/GEOB_wpsagrocampus.js"],
             css: ["app/addons/agrocampus/agrocampus.css"],            
             options: {
