@@ -7,9 +7,9 @@
  * @include OpenLayers/Format/OWSCommon/v1_1_0.js 
  * 
  */
-Ext.namespace("GEOB");
+Ext.namespace("GEOR");
 
-GEOB.wpsagrocampus = (function () {
+GEOR.wpsagrocampus = (function () {
 
     /*
      * Private
