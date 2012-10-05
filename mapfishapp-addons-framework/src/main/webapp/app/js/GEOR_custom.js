@@ -123,7 +123,7 @@ GEOR.custom = {
                     labelfield: 'texnumparc'
                 },
                 animation: true,
-                proxy:'../proxy?url='
+                proxy:'ws/ogcproxy/?url='
             }
         },
         //Addon Magnifier
