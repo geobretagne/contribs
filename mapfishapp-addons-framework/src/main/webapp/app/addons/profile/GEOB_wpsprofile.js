@@ -455,14 +455,14 @@ GEOR.wpsprofile = (function () {
     var convert2csv = function (data) {
             var format = new OpenLayers.Format.JSON();
             OpenLayers.Request.POST({
-                url: "http://geobretagne.fr/mapfishapp/ws/csv/",
+                url: "ws/csv/",
                 data: format.write({
                     columns: ['distance', 'x', 'y', 'altitude', 'pente'],
                     data: data
                 }),
                 success: function (response) {
                     var o = Ext.decode(response.responseText);
-                    window.location.href = 'http://geobretagne.fr/mapfishapp/' + o.filepath;
+                    window.location.href = o.filepath;
                 }
             });
         };
