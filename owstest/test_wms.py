@@ -14,13 +14,17 @@ import os.path
 endpoints = [
     'http://sdi.georchestra.org/geoserver/ci/wms'
 ]
+tmpdir = 'tmp'
+
+if not os.path.exists(tmpdir):
+    os.makedirs(tmpdir)
 
 def md5(file, dump=False):
     d = hashlib.md5()
     bin = file.read()
     d.update(bin)
     if dump:
-        f=open(os.path.join('tmp',d.hexdigest()), 'w')
+        f=open(os.path.join(tmpdir, d.hexdigest()), 'w')
         f.write(bin)
         f.close()
     return d.hexdigest()
