@@ -1,0 +1,3 @@
+owslib
+gsconfig
+pytest-cov
