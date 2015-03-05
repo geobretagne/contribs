@@ -9,6 +9,7 @@ from owslib.wms import ServiceException
 import hashlib
 from functools import partial
 import os
+import os.path
 
 endpoints = [
     'http://sdi.georchestra.org/geoserver/ci/wms'
@@ -19,7 +20,7 @@ def md5(file, dump=False):
     bin = file.read()
     d.update(bin)
     if dump:
-        f=open(d.hexdigest(), 'w')
+        f=open(os.path.join('tmp',d.hexdigest()), 'w')
         f.write(bin)
         f.close()
     return d.hexdigest()
@@ -77,3 +78,4 @@ def test_getmap_vector_protected(wms):
     assert 'HTTP Status 401' in str(exception)
 
 
+pytest.main()
